@@ -20,7 +20,7 @@ BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 mkdir -p "$BUILD_DIR/.heroku/node/"
 if $USE_RUST; then
   mkdir -p "$BUILD_DIR/.heroku/rust/"
-  export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/rust/rustc/bin":$PATH
+  export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/rust/bin":$PATH
 else
   export PATH="$BUILD_DIR/.heroku/node/bin":$PATH
 fi
@@ -102,6 +102,19 @@ install_bins() {
 header "Installing binaries"
 install_bins | indent
 
+build_rust_project() {
+  if $RUSTPREBUILD; then
+    echo "Prebuild detected for Rust (rust project dependencies are already compiled)"
+  fi
+  cd $RUST_DIR
+  cargo build --release
+}
+
+if $USE_RUST; then
+  header "Building Rust project"
+  build_rust_project | indent
+fi
+
 restore_cache() {
   local cache_status="$(get_cache_status)"
 
@@ -133,19 +146,6 @@ build_dependencies() {
 
 header "Building dependencies"
 build_dependencies | indent
-
-build_rust_project() {
-  if $RUSTPREBUILD; then
-    echo "Prebuild detected for Rust (rust project dependencies are already compiled)"
-  fi
-  cd $RUST_DIR
-  cargo build --release
-}
-
-if $USE_RUST; then
-  header "Building Rust project"
-  build_rust_project | indent
-fi
 
 cache_build() {
   local cache_directories=$(get_cache_directories)
