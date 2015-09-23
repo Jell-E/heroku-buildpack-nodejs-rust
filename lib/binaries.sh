@@ -13,9 +13,10 @@ install_rust() {
 
   echo "Downloading rustup..."
   curl -sf -o /tmp/rustup.sh https://static.rust-lang.org/rustup.sh
-
+  chmod +x /tmp/rustup.sh
+  
   echo "Installing rust and cargo..."
-  if $version; then
+  if [ -n $version ]; then
     /tmp/rustup.sh --prefix=$dir --version=$version
   else
     /tmp/rustup.sh --prefix=$dir
