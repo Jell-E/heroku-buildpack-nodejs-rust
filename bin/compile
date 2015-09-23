@@ -137,6 +137,7 @@ build_dependencies | indent
 build_rust_project() {
   if $RUSTPREBUILD; then
     echo "Prebuild detected for Rust (rust project dependencies are already compiled)"
+  fi
   cd $RUST_DIR
   cargo build --release
 }
