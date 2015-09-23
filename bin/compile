@@ -142,7 +142,7 @@ build_rust_project() {
   cargo build --release
 }
 
-if USE_RUST; then
+if $USE_RUST; then
   header "Building Rust project"
   build_rust_project | indent
 fi
