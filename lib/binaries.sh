@@ -19,6 +19,7 @@ install_rust() {
     /tmp/rustup.sh --prefix=$dir --version=$version
   else
     /tmp/rustup.sh --prefix=$dir
+  fi
   chmod +x $dir/rustc/bin
   chmod +x $dir/cargo/bin
   LD_LIBRARY_PATH="$dir/rustc/lib${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
