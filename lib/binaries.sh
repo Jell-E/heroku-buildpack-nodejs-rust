@@ -7,6 +7,24 @@ needs_resolution() {
   fi
 }
 
+install_rust() {
+  local version="$1"
+  local dir="$2"
+
+  echo "Downloading rustup..."
+  curl -sf -o /tmp/rustup.sh https://static.rust-lang.org/rustup.sh
+
+  echo "Installing rust and cargo..."
+  if $version; then
+    /tmp/rustup.sh --prefix=$dir --version=$version
+  else
+    /tmp/rustup.sh --prefix=$dir
+  chmod +x $dir/rustc/bin
+  chmod +x $dir/cargo/bin
+  LD_LIBRARY_PATH="$dir/rustc/lib${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
+  export LD_LIBRARY_PATH
+}
+
 install_nodejs() {
   local version="$1"
   local dir="$2"
