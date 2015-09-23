@@ -17,9 +17,9 @@ install_rust() {
 
   echo "Installing rust and cargo..."
   if [ -n $version ]; then
-    /tmp/rustup.sh --prefix=$dir --version=$version --disable-sudo
+    /tmp/rustup.sh --prefix=$dir --version=$version --disable-sudo -y
   else
-    /tmp/rustup.sh --prefix=$dir --disable-sudo
+    /tmp/rustup.sh --prefix=$dir --disable-sudo -y
   fi
   chmod +x $dir/rustc/bin
   chmod +x $dir/cargo/bin
