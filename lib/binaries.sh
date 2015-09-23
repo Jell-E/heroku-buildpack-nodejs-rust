@@ -21,8 +21,7 @@ install_rust() {
   else
     /tmp/rustup.sh --prefix=$dir --disable-sudo -y
   fi
-  chmod +x $dir/rustc/bin
-  chmod +x $dir/cargo/bin
+  chmod +x $dir/bin
   LD_LIBRARY_PATH="$dir/rustc/lib${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
   export LD_LIBRARY_PATH
 }

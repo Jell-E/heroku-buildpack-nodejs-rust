@@ -20,7 +20,7 @@ BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 mkdir -p "$BUILD_DIR/.heroku/node/"
 if $USE_RUST; then
   mkdir -p "$BUILD_DIR/.heroku/rust/"
-  export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/rust/rustc/bin:$BUILD_DIR/.heroku/rust/cargo/bin":$PATH
+  export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/rust/rustc/bin":$PATH
 else
   export PATH="$BUILD_DIR/.heroku/node/bin":$PATH
 fi
