@@ -109,7 +109,7 @@ build_rust_project() {
   cd $RUST_DIR
   #LD_LIBRARY_PATH="$dir/lib${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
   #export LD_LIBRARY_PATH
-  local LD_LIBRARY_PATH="$dir/lib" cargo build --release
+  LD_LIBRARY_PATH="$BUILD_DIR/.heroku/rust/lib" cargo build --release
 }
 
 if $USE_RUST; then
