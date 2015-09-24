@@ -17,9 +17,9 @@ install_rust() {
 
   echo "Installing rust and cargo..."
   if [ -n $version ]; then
-    /tmp/rustup.sh --prefix=$dir --version=$version --disable-sudo -y
+    /tmp/rustup.sh --prefix=$dir --version=$version --disable-sudo -y --disable-ldconfig
   else
-    /tmp/rustup.sh --prefix=$dir --disable-sudo -y
+    /tmp/rustup.sh --prefix=$dir --disable-sudo -y --disable-ldconfig
   fi
   chmod +x $dir/bin
   #LD_LIBRARY_PATH="$dir/lib${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
