@@ -22,8 +22,8 @@ install_rust() {
     /tmp/rustup.sh --prefix=$dir --disable-sudo -y
   fi
   chmod +x $dir/bin
-  LD_LIBRARY_PATH="$dir/lib${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
-  export LD_LIBRARY_PATH
+  #LD_LIBRARY_PATH="$dir/lib${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
+  export LD_LIBRARY_PATH="$dir/lib":LD_LIBRARY_PATH
 }
 
 install_nodejs() {
