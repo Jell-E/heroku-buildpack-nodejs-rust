@@ -107,6 +107,7 @@ build_rust_project() {
     echo "Prebuild detected for Rust (rust project dependencies are already compiled)"
   fi
   cd $RUST_DIR
+  export LD_LIBRARY_PATH="$dir/lib${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
   cargo build --release
 }
 
